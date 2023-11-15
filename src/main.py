@@ -21,7 +21,7 @@ def main():
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     criterion = torch.nn.SmoothL1Loss()
 
-    logger.info('Started')
+    logger.info("Started")
 
     running = True
     try:
@@ -40,7 +40,7 @@ def main():
         running = False
         raise e
     finally:
-        logger.info('Stopped')
+        logger.info("Stopped")
         torch.save(model.state_dict(), "data/model.pth")
 
 

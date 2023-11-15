@@ -42,7 +42,7 @@ def play_game(model: CheckMatrixModel, optimizer, criterion, device):
 
     while not board.is_game_over(claim_draw=True):
         move = select_move(board, model, device)
-        logger.debug(f"{'White' if board.turn == chess.WHITE else 'Black'} move: {move}")
+        logger.debug(f"{"White" if board.turn == chess.WHITE else "Black"} move: {move}")
 
         board.push(move)
         game_state = generate_board_states(board)
