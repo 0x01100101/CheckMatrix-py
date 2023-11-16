@@ -5,7 +5,8 @@ __pycache__/
 venv/
 
 *.local*
-.git
+.git/
+.pytest_cache/
 
 *.pth
 *.exe
