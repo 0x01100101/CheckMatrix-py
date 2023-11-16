@@ -1,31 +1,31 @@
 from multiprocessing import Pool
-from logger import logger
+from logger import get_logger
 from mcts.node import MCTSNode
 from mcts.simulation import run_simulation
 import chess
 
 
 
-def MCTS(root: MCTSNode, iterations=500, num_workers=4):
+def MCTS(root: MCTSNode, iterations: int, num_workers: int):
     try:
         pool = Pool(num_workers)
-        logger.debug(f"Running MCTS with {num_workers} workers")
+        get_logger().debug(f"Running MCTS with {num_workers} workers")
         worker_iterations = iterations // num_workers
-        logger.debug(f"Running {worker_iterations} iterations per worker")
+        get_logger().debug(f"Running {worker_iterations} iterations per worker")
         tasks = [(root, worker_iterations) for _ in range(num_workers)]
-        logger.debug(f"Running {len(tasks)} tasks")
+        get_logger().debug(f"Running {len(tasks)} tasks")
 
         all_results = pool.map(run_simulation, tasks)
-        logger.debug(f"Finished running {len(tasks)} tasks")
+        get_logger().debug(f"Finished running {len(tasks)} tasks")
     except Exception as e:
-        logger.error(f"An error occurred during MCTS: {e}")
+        get_logger().error(f"An error occurred during MCTS: {e}")
     finally:
         pool.close()
-        logger.debug("Closed pool")
+        get_logger().debug("Closed pool")
         pool.terminate()
-        logger.debug("Terminated pool")
+        get_logger().debug("Terminated pool")
         pool.join()
-        logger.debug("Joined pool")
+        get_logger().debug("Joined pool")
 
     
     # Aggregate results

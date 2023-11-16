@@ -1,0 +1,16 @@
+log_path: "logs/checkmatrix.log"
+
+model:
+    path: "data/model.pth"
+    epochs: -1 # -1 for no limit
+    device: "auto" # "auto", "cpu", "cuda"
+    learning_rate: 0.001
+    mcts:
+        iterations: 300
+        workers: 6
+
+stockfish:
+    path: "stockfish.exe"
+    depth: 10
+    nodes: 100000
+    time: 0.1

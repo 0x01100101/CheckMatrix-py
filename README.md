@@ -36,3 +36,6 @@ Currently playing against it is not implemented, though it will be added soon.<b
     ```bash
     python src/main.py
     ```
+
+### Configuration
+`config.yaml` is the default configuration file. You can change the search path via the environment variable `CONFIG_PATH`, or by passing the path to the config file as an argument to `main.py` (--config \<path to yaml\>).<br>

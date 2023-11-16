@@ -1,0 +1,39 @@
+{
+    "type": "object",
+    "properties": {
+        "log_path": {"type": "string"},
+        "model": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string"},
+                "epochs": {"type": "number"},
+                "learning_rate": {"type": "number"},
+                "device": {
+                    "type": "string",
+                    "enum": ["cuda", "cpu", "auto"]
+                },
+                "mcts": {
+                    "type": "object",
+                    "properties": {
+                        "iterations": {"type": "number"},
+                        "workers": {"type": "number"}
+                    },
+                    "required": ["iterations", "workers"]
+                }
+            },
+            "required": ["path", "epochs", "device", "learning_rate"]
+        },
+
+        "stockfish": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string"},
+                "depth": {"type": "number"},
+                "nodes": {"type": "number"},
+                "time": {"type": "number"}
+            },
+            "required": ["path", "depth", "nodes", "time"]
+        }
+    },
+    "required": ["log_path", "model", "stockfish"]
+}

@@ -12,7 +12,7 @@ class MCTSNode:
         self.model = model
         self.device = device
         self.parent = parent
-        self.children = []
+        self.children: list[MCTSNode] = []
         self.wins = 0
         self.visits = 0
         self.untried_moves = list(board.legal_moves)

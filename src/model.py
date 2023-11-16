@@ -1,7 +1,8 @@
 import torch.nn as nn
 import torch
 import math
-from logger import logger
+from logger import get_logger
+from config import load_config
 
 
 
@@ -46,7 +47,8 @@ class PositionalEncoding(nn.Module):
     
 
 def train_model(model, training_data, optimizer, criterion, device):
-    logger.debug("Training model")
+    config = load_config().model
+    get_logger().debug("Training model")
 
     model.train()
     for board_tensor, outcome in training_data:
@@ -56,10 +58,10 @@ def train_model(model, training_data, optimizer, criterion, device):
         outcome_tensor = torch.tensor([[outcome]], dtype=torch.float32).to(device)  # move tensor to device
         loss = criterion(prediction, outcome_tensor)
         loss.backward()
-        logger.debug(f"Loss: {loss.item()}")
+        get_logger().debug(f"Loss: {loss.item()}")
         optimizer.step()
         model.zero_grad()
 
-        torch.save(model.state_dict(), "data/model.pth")
+        torch.save(model.state_dict(), config.path)
 
-    logger.debug("Finished training model")
+    get_logger().debug("Finished training model")

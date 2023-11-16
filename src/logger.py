@@ -1,16 +1,25 @@
 import logging
+from config import load_config
 
 
 
-logger = logging.getLogger("checkr")
-logger.setLevel(logging.DEBUG)
+def init_logger():
+    logger = logging.getLogger("checkmatrix")
 
-file_handler = logging.FileHandler("logs/checkr.log")
-stream_handler = logging.StreamHandler()
+    logger.setLevel(logging.DEBUG)
 
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
-file_handler.setFormatter(formatter)
-stream_handler.setFormatter(formatter)
+    file_handler = logging.FileHandler(load_config().log_path)
+    stream_handler = logging.StreamHandler()
 
-logger.addHandler(file_handler)
-logger.addHandler(stream_handler)
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+    file_handler.setFormatter(formatter)
+    stream_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(stream_handler)
+
+
+def get_logger():
+    logger = logging.getLogger("checkmatrix")
+
+    return logger

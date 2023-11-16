@@ -1,6 +1,6 @@
 import copy
 import random
-from logger import logger
+from logger import get_logger
 from mcts.node import MCTSNode
 
 
@@ -10,7 +10,7 @@ def run_simulation(args):
     local_node: MCTSNode = copy.deepcopy(node)
     results = []
 
-    logger.debug(f"Running {iterations} iterations on worker")
+    get_logger().debug(f"Running {iterations} iterations on worker")
 
     for _ in range(iterations):
         current_node: MCTSNode = local_node
