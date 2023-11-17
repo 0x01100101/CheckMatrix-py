@@ -5,15 +5,16 @@ import time
 from logger import init_logger, get_logger
 from model import CheckMatrixModel
 from game import play_game
-from config import load_config, Device
+from config import load_config, Device, Opponent
 import argparse
 from constants import CONFIG_PATH_ENV_VAR
+from game import Stockfish
 
 
 
 def main():
     parser = argparse.ArgumentParser(description="CheckMatrix")
-    parser.add_argument("--config", type=str, help="Path to config yaml file")
+    parser.add_argument("--config", type=str, help="Path to config yaml file", required=False)
 
     args = parser.parse_args()
 
@@ -46,6 +47,10 @@ def main():
 
     get_logger().info("Started")
 
+    stockfish = None
+    if config.opponent in [Opponent.STOCKFISH, Opponent.MIXED]:
+        stockfish = Stockfish()
+
     running = True
     try:
         epoch = 0
@@ -59,7 +64,9 @@ def main():
                 criterion,
                 device,
                 config.mcts.iterations,
-                config.mcts.workers)
+                config.mcts.workers,
+                config.opponent,
+                stockfish)
             print(f"Game {epoch}, Result: {result}")
             end_time = time.time()
 

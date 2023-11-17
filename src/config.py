@@ -21,12 +21,19 @@ class Device(Enum):
     CUDA = "cuda"
     AUTO = "auto"
 
+class Opponent(Enum):
+    SELF = "self"
+    STOCKFISH = "stockfish"
+    USER = "user"
+    MIXED = "mixed"
+
 class Model(BaseModel):
     path: str
     epochs: int
     device: Device
     learning_rate: float
     mcts: MCTS
+    opponent: Opponent
 
 
 class Stockfish(BaseModel):

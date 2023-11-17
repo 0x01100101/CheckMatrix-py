@@ -8,6 +8,10 @@
                 "path": {"type": "string"},
                 "epochs": {"type": "number"},
                 "learning_rate": {"type": "number"},
+                "opponent": {
+                    "type": "string",
+                    "enum": ["user", "self", "stockfish", "mixed"]
+                },
                 "device": {
                     "type": "string",
                     "enum": ["cuda", "cpu", "auto"]
