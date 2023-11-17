@@ -5,7 +5,7 @@ model:
     epochs: -1 # -1 for no limit
     device: "auto" # "auto", "cpu", "cuda"
     learning_rate: 0.001
-    opponent: "mixed" # "stockfish", "self", "mixed", "user" # Mixed is 50% self, 50% stockfish
+    opponent: "self" # "stockfish", "self", "mixed", "user" # Mixed is 50% self, 50% stockfish
 
     mcts: # Monte Carlo Tree Search
         iterations: 300

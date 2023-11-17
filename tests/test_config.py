@@ -18,6 +18,7 @@ def test_config(config: Config):
     assert config.model.learning_rate == 0.001
     assert config.model.mcts.iterations == 300
     assert config.model.mcts.workers == 6
+    assert config.model.opponent == "self"
 
     assert config.stockfish.path == "stockfish.exe"
     assert config.stockfish.depth == 10
