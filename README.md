@@ -1,9 +1,6 @@
 # CheckMatrix (Chess AI)
 
-CheckMatrix is a Chess AI that uses Monte Carlo Tree Search (MCTS) along with a transformer-based model to evaluate moves.
-It is trained by playing against itself using reinforcement learning.<br>
-
-Currently playing against it is not implemented, though it will be added soon.<br>
+CheckMatrix is a Chess AI that uses Monte Carlo Tree Search (MCTS) along with a transformer-based model to evaluate moves.<br>
 
 
 ## Table of Contents
