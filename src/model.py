@@ -46,7 +46,13 @@ class PositionalEncoding(nn.Module):
         return self.dropout(x)
     
 
-def train_model(model, training_data, optimizer, criterion, device):
+def train_model(
+        model: CheckMatrixModel,
+        training_data: list[tuple[torch.Tensor, int]],
+        optimizer: torch.optim.Optimizer,
+        criterion: torch.nn.Module,
+        device: torch.device
+    ):
     config = load_config().model
     get_logger().debug("Training model")
 

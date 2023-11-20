@@ -47,6 +47,6 @@ class MCTSNode:
         return child_node
 
 
-    def update(self, result):
+    def update(self, result: int):
         self.visits += 1
         self.wins += result

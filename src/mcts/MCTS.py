@@ -34,7 +34,7 @@ def MCTS(root: MCTSNode, iterations: int, num_workers: int):
             apply_move_result_to_tree(root, move, result)
 
 
-def apply_move_result_to_tree(root: MCTSNode, move: chess.Move, result):
+def apply_move_result_to_tree(root: MCTSNode, move: chess.Move, result: int):
     if root.board.is_legal(move):
         node = find_or_create_node(root, move)
         if node:

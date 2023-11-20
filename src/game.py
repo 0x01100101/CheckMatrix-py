@@ -1,13 +1,15 @@
 import chess
 import chess.engine
 import random
+import torch.nn as nn
+import torch.optim as optim
 from logger import get_logger
 from mcts.node import MCTSNode
 from mcts.MCTS import MCTS
 from board import generate_board_states
 from reward import calculate_reward
 from model import CheckMatrixModel, train_model
-from config import Opponent, load_config
+from config import Opponent, Device, load_config
 
 
 
@@ -34,7 +36,7 @@ class Stockfish:
         return 0
 
 
-def select_move(model: CheckMatrixModel, board: chess.Board, device, mcts_iterations=300, num_workers=6):
+def select_move(model: CheckMatrixModel, board: chess.Board, device: Device, mcts_iterations=300, num_workers=6):
     root = MCTSNode(board, model, device)
     MCTS(root, iterations=mcts_iterations, num_workers=num_workers)
     best_move = max(root.children, key=lambda child: child.visits).board.peek()  # Select move with the highest visits
@@ -48,9 +50,9 @@ def validate_move(board: chess.Board, move: chess.Move):
 def make_move(
         model: CheckMatrixModel, 
         board: chess.Board,
-        device,
-        mcts_iterations,
-        num_workers,
+        device: Device,
+        mcts_iterations: int,
+        num_workers: int,
         opponent = Opponent.SELF,
         stockfish: Stockfish = None
     ):
@@ -83,11 +85,11 @@ def make_move(
 
 def play_game(
         model: CheckMatrixModel,
-        optimizer,
-        criterion,
-        device,
-        mcts_iterations,
-        num_workers,
+        optimizer: optim.Optimizer,
+        criterion: nn.Module,
+        device: Device,
+        mcts_iterations: int,
+        num_workers: int,
         opponent = Opponent.SELF,
         stockfish: Stockfish = None
     ):
